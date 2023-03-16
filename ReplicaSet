@@ -1,0 +1,53 @@
+rs.yml  = kams 
+-=====--------
+kind: ReplicaSet    
+apiVersion: apps/v1    
+metadata:
+  name: <RSName> 
+  labels:
+    <key>: <value> 
+spec:
+  selector:
+    matchLabels:
+      <key>: value           
+    matchExpressions:
+    - key: <key>
+      operator: <in /not in>  
+      values: 
+      - <value1> 
+      - <value3>      
+  replicas: 3   
+  template:
+    metadata:
+      name: podName  
+    labels:
+      <key>: <vales>  
+    spec:
+      containers:
+      - name: containerName  
+        image: imageName:tag    
+        ports:
+        - containerPort: <ContainerpodNumber>      
+=========================================================================
+
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: frontend
+  labels:
+    app: guestbook
+    tier: frontend
+spec:
+  # modify replicas according to your case
+  replicas: 3
+  selector:
+    matchLabels:
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        tier: frontend
+    spec:
+      containers:
+      - name: php-redis
+        image: gcr.io/google_samples/gb-frontend:v3
