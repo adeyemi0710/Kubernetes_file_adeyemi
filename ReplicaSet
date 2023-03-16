@@ -20,8 +20,8 @@ spec:
   template:
     metadata:
       name: podName  
-    labels:
-      <key>: <vales>  
+      labels:
+        <key>: <vales>  
     spec:
       containers:
       - name: containerName  
